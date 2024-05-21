@@ -1,0 +1,18 @@
+.container-form {
+    marginTop: '50px';
+}
+
+.text-header {
+    margin: 30px;
+    padding-left: 12px;
+    width: 1000px;
+}
+
+.list {
+    padding-left: 20px;
+    font-size: 12px;
+}
+
+.marker {
+    padding-left: 20px;
+} 

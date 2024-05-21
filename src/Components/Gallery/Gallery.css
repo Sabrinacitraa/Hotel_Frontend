@@ -1,0 +1,32 @@
+.content{
+  margin: 8rem;
+  padding-right: 48rem;
+}
+
+
+
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 6rem;
+}
+
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  max-width: 550px; 
+}
+
+.gallery-item p {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}

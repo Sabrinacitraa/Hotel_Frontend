@@ -18,18 +18,18 @@ function DataKamar() {
         alert("Token not found");
       }
 
-      const url = "http://localhost:7000/pemesanan/kamar"
+      const url = "http://localhost:7000/booking/kamar";
       const response = await axios.get(url, {
-        headers : {
-          Authorization : `Bearer ${token}`
-        }
-      })
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       // console.log(response)
-      const data = response.data.data
-      console.log(data)
+      const data = response.data.data;
+      console.log(data);
 
-      if(data){
-        setRooms(data)
+      if (data) {
+        setRooms(data);
       }
     } catch (error) {
       alert(error);
@@ -90,7 +90,7 @@ function DataKamar() {
           </tr>
         </thead>
         <tbody>
-          {rooms.map((item,index) => (
+          {rooms.map((item, index) => (
             <tr key={index.id}>
               <td>{item.id_kamar}</td>
               <td>{item.nama_tipe_kamar}</td>

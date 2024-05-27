@@ -11,7 +11,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     getTypeKamar(); // Corrected here
-  },[]);
+  }, []);
 
   const getTypeKamar = async () => {
     try {
@@ -21,16 +21,30 @@ const LandingPage = () => {
 
       if (data) {
         setTypeKamar(data.data);
-        console.log("Data received",data);
+        console.log("Data received", data);
       }
     } catch (error) {
       console.log("Error fetching room types", error);
     }
   };
 
-  const handleRoomTypeChange = (event) => {
-    setSelectedRoomType(event.target.value);
+  const [tamuCount, setTamuCount] = useState(0);
+
+  const handleIncrement = () => {
+    setTamuCount(tamuCount + 1);
   };
+
+  const handleDecrement = () => {
+    setTamuCount(tamuCount > 0 ? tamuCount - 1 : 0); // Ensure the count doesn't go below 0
+  };
+
+  const handleChange = (e) => {
+    setTamuCount(Number(e.target.value));
+  };
+
+  // const handleRoomTypeChange = (event) => {
+  //   setSelectedRoomType(event.target.value);
+  // };
 
   return (
     <div className="home">
@@ -49,7 +63,27 @@ const LandingPage = () => {
             <input type="date" id="checkOut" />
           </div>
 
-          <div className="roomGuest">
+
+          <div className="addTamu">
+  <label htmlFor="addTamu">Add Guest</label>
+  <div className="counterContainer">
+    <div className="counterButtons">
+      <button type="button" onClick={handleDecrement}>-</button>
+      <input
+        type="number"
+        id="addTamu"
+        value={tamuCount}
+        onChange={handleChange}
+        style={{ textAlign: 'center', width: '60px' }}
+      />
+      <button type="button" onClick={handleIncrement}>+</button>
+    </div>
+    
+  </div>
+</div>
+
+
+          {/* <div className="roomGuest">
             <label htmlFor="roomGuest">Room type</label>
             <select
               className="dropdown"
@@ -67,7 +101,9 @@ const LandingPage = () => {
                 <option value="">Loading...</option>
               )}
             </select>
-          </div>
+          </div> */}
+
+
 
           <button className="btn">
             <a href="#">Find a Four Points</a>

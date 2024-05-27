@@ -4,6 +4,7 @@ import UserLayout from "./Components/Layouts/User";
 import Home from "./Components/Home/LandingPage/LandingPage";
 import AboutUs from "./Components/AboutUs/AboutUs";
 import Gallery from "./Components/Gallery/Gallery";
+import ContactUs from "./Components/ContactUs/ContactUs";
 import Login from "./Components/Login/Login";
 import Booking from "./Components/Booking/Booking";
 import AdminLayout from "./Components/Layouts/Admin";
@@ -33,6 +34,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/Gallery" element={<Gallery />} />
+          <Route path="/ContactUs" element={<ContactUs />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
         </Route>

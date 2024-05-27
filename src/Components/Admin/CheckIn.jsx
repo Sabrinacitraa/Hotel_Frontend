@@ -109,10 +109,7 @@ function CheckIn() {
             <label>Room Type:</label>
             <input type="text" name="roomType" value={formData.roomType} onChange={handleInputChange} />
           </div>
-          <div className="form-group">
-            <label>Deposit:</label>
-            <input type="number" name="deposit" value={formData.deposit} onChange={handleInputChange} />
-          </div>
+          
 
           <div className="button-container">
             <button type="submit" className="checkin-button">Check In</button>

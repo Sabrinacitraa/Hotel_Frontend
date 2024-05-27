@@ -1,0 +1,77 @@
+/* Basic styling for the Contact Us page */
+.contact-us {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 5rem;
+    padding: 20px;
+    font-family: sans-serif;
+  }
+  
+  .contact-us__header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .contact-us__header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .contact-us__header p {
+    color: #666;
+  }
+  
+  .contact-us__form {
+    margin-bottom: 20px;
+  }
+  
+  .contact-us__form form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .contact-us__form label {
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .contact-us__form input,
+  .contact-us__form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  .contact-us__form button {
+    background-color: #192655;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .contact-us__form button:hover {
+    background-color: #192655; 
+  }
+  
+  .contact-us__info {
+    text-align: center;
+  }
+  
+  .contact-us__info h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .contact-us__info ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .contact-us__info li {
+    margin-bottom: 10px;
+  }
+  

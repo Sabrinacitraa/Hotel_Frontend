@@ -150,4 +150,66 @@ border-radius: 10px;
 .link a{
   text-decoration: none;
 }
-  
+
+.addTamu {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.addTamu label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.counterContainer {
+  display: flex;
+  align-items: center;
+  height: 40px;
+      padding: 0 1.5rem;
+      background: #c5cde9;
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: 10px;
+}
+
+.counterButtons {
+  display: flex;
+  align-items: center;
+  background-color: #c5cde9; 
+  border-radius: 4px;
+}
+
+.counterButtons button {
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.counterButtons input {
+  text-align: center;
+  width: 60px;
+}
+
+.addButton {
+  margin-left: 10px;
+  background-color: #6495ED; /* Warna biru */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.addButton:hover {
+  background-color: #4169E1; /* Warna biru yang sedikit lebih gelap saat dihover */
+}
+

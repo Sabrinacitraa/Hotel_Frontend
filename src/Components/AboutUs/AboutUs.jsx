@@ -91,7 +91,7 @@ const aboutUs = () => {
       <div className="image">
         <img src={img} classNamealt="img" />
       </div>
-      <hr />
+      <hr className="garis"/>
       <div className="content2">
         <h2>Your Retreat Our Passion</h2>
         
@@ -118,7 +118,7 @@ const aboutUs = () => {
         </h5>
       </div>
 
-      <hr />
+      <hr className="garis" />
       <h2 className="bottom">Four Points by Sheraton</h2>
       <h3 className="bottom">in Indonesia</h3>
 

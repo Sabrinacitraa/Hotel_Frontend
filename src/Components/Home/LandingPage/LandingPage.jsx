@@ -1,45 +1,55 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import "./LandingPage.css";
 import header from "../../../Assets/header.jpg";
 import Carousel from "../../Carousel/Carousel";
 import img from "../../../Assets/content2.jpg";
 import axios from "axios";
 
-const LandingPage = () => {
-  const [typeKamar, setTypeKamar] = useState([]);
-  const [selectedRoomType, setSelectedRoomType] = useState("");
+const SelectedRoom = createContext();
 
-  useEffect(() => {
-    getTypeKamar(); // Corrected here
-  }, []);
+const LandingPage = () => {
+  const [checkIn, setCheckin] = useState();
+  const [checkOut, setCheckOut] = useState();
+  const [avalaibleRooms, setAvalaibleRooms] = useState([]);
+  const [roomCount, setRoomCount] = useState(0);
 
   const getTypeKamar = async () => {
     try {
-      const url = "http://localhost:7000/tipe_kamar/";
-      const response = await axios.get(url);
+      const url = "http://localhost:7000/booking/filterKamar";
+      const request = {
+        checkIn,
+        checkOut,
+        roomCount,
+      };
+      console.log(request);
+      if(request){
+        localStorage.setItem("date and room", JSON.stringify(request))
+      }
+      const response = await axios.get(url, request);
       const data = response.data;
-
       if (data) {
-        setTypeKamar(data.data);
-        console.log("Data received", data);
+        setAvalaibleRooms(data);
+        localStorage.setItem("avalaibleRooms", JSON.stringify(data))
       }
     } catch (error) {
       console.log("Error fetching room types", error);
     }
   };
 
-  const [tamuCount, setTamuCount] = useState(0);
+  useEffect(() => {
+    getTypeKamar();
+  }, []);
 
   const handleIncrement = () => {
-    setTamuCount(tamuCount + 1);
+    setRoomCount(roomCount + 1);
   };
 
   const handleDecrement = () => {
-    setTamuCount(tamuCount > 0 ? tamuCount - 1 : 0); // Ensure the count doesn't go below 0
+    setRoomCount(roomCount > 0 ? roomCount - 1 : 0); // Ensure the count doesn't go below 0
   };
 
   const handleChange = (e) => {
-    setTamuCount(Number(e.target.value));
+    setRoomCount(Number(e.target.value));
   };
 
   // const handleRoomTypeChange = (event) => {
@@ -51,62 +61,62 @@ const LandingPage = () => {
       <div className="img">
         <img src={header} alt="" />
       </div>
-      <section className="grid ">
+      <section className="grid" onSubmit={getTypeKamar}>
         <div className="horizontal-grid d-flex flex-row">
           <div className="checkIn ">
             <label htmlFor="checkIn">Check In</label>
-            <input type="date" id="checkIn" />
+            <input
+              type="date"
+              id="checkIn"
+              onChange={(e) => {
+                setCheckin(e.target.value);
+              }}
+              value={checkIn}
+            />
           </div>
 
           <div className="checkOut">
             <label htmlFor="checkOut">Check Out</label>
-            <input type="date" id="checkOut" />
+            <input
+              type="date"
+              id="checkOut"
+              onChange={(e) => {
+                setCheckOut(e.target.value);
+              }}
+              value={checkOut}
+            />
           </div>
 
-
           <div className="addTamu">
-  <label htmlFor="addTamu">Add Guest</label>
-  <div className="counterContainer">
-    <div className="counterButtons">
-      <button type="button" onClick={handleDecrement}>-</button>
-      <input
-        type="number"
-        id="addTamu"
-        value={tamuCount}
-        onChange={handleChange}
-        style={{ textAlign: 'center', width: '60px' }}
-      />
-      <button type="button" onClick={handleIncrement}>+</button>
-    </div>
-    
-  </div>
-</div>
-
-
-          {/* <div className="roomGuest">
-            <label htmlFor="roomGuest">Room type</label>
-            <select
-              className="dropdown"
-              id="roomGuest"
-              value={selectedRoomType}
-              onChange={handleRoomTypeChange}
-            >
-              {typeKamar.length > 0 ? (
-                typeKamar.map((item, index) => (
-                  <option key={index} value={item.nama_tipe_kamar}>
-                    {item.nama_tipe_kamar}
-                  </option>
-                ))
-              ) : (
-                <option value="">Loading...</option>
-              )}
-            </select>
-          </div> */}
-
-
-
+            <label htmlFor="addTamu">Total rooms</label>
+            <div className="counterContainer">
+              <div className="counterButtons">
+                <button type="button" onClick={handleDecrement}>
+                  -
+                </button>
+                <input
+                  type="number"
+                  id="addTamu"
+                  value={roomCount}
+                  onChange={handleChange}
+                  style={{ textAlign: "center", width: "60px" }}
+                />
+                <button type="button" onClick={handleIncrement}>
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
           <button className="btn">
-            <a href="#">Find a Four Points</a>
+            <a
+              onClick={() => {
+                console.log("ok");
+                getTypeKamar();
+                window.location.href='/booking'
+              }}
+            >
+              Find a Four Points
+            </a>
           </button>
         </div>
       </section>

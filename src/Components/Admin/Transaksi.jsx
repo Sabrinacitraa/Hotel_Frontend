@@ -73,10 +73,10 @@ function Transaksi() {
         <thead>
           <tr>
             <th>No</th>
-            <th>Room Type</th>
-            <th>Room</th>
+            <th>Invoice</th>
+            <th>Total Room</th>
             <th>Status</th>
-            <th>Price</th>
+            <th>Guest</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -84,11 +84,11 @@ function Transaksi() {
           {pemesanans.length > 0 ? (
             pemesanans.slice(0, 1).map((item, index) => (
               <tr key={index.id}>
-                <td>{item.id_kamar}</td>
-                <td>{item.nama_tipe_kamar}</td>
-                <td>{item.nomor_kamar}</td>
-                <td>{item.status}</td>
-                <td>{item.harga}</td>
+                <td>{item.id}</td>
+                <td>{item.nomor_pemesanan}</td>
+                <td>{item.jumlah_kamar}</td>
+                <td>{item.status_pemesanan}</td>
+                <td>{item.nama_tamu}</td>
                 <td>
                   <button onClick={() => handleDeleteRoom(item.id)}>
                     <AiOutlineDelete />

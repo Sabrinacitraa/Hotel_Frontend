@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./Login.css";
 import logo1 from "../../Assets/logo.jpg";
 import axios from "axios";
+import { TiArrowBack } from "react-icons/ti";
+import { Toaster, toast } from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,101 +12,119 @@ const Login = () => {
   const handleAuth = async (event) => {
     event.preventDefault();
 
-    try {
-      let url = "http://localhost:7000/auth";
-      let input = {
-        email: email,
-        password: password,
-      };
-      const response = await axios.post(url, input);
-      const data = await response.data;
-      const role = data.data.role;
+    const loginPromise = new Promise(async (resolve, reject) => {
 
-      if (data) {
-        sessionStorage.setItem("Token", data.token);
-        localStorage.setItem("Data user", JSON.stringify(data.data));
-        alert("Login success");
+      try {
+        let url = "http://localhost:7000/auth";
+        let input = {
+          email: email,
+          password: password,
+        };
+        const response = await axios.post(url, input);
+        const data = await response.data;
+        console.log('====================================');
+        console.log(data);
+        console.log('====================================');
 
-        if (role) {
-          if (data.data.role == "customer") {
+        if (data) {
+          sessionStorage.setItem("Token", data.token);
+          localStorage.setItem("Data user", JSON.stringify(data.data));
+          resolve();
+
+          if ( data.data.role== "customer") {
             window.location.href = "/";
           } else {
             window.location.href = "/Admin";
           }
+        } else {
+          reject(new Error(""));
         }
-      } else {
-        alert("Login failed");
+      } catch (error) {
+        reject(error);
       }
-    } catch (error) {
-      alert("Error login");
-      console.log(error);
-    }
+    });
+    toast.promise(loginPromise, {
+      loading: "Logging in...",
+      success: "Login successful",
+      error: "Login failed",
+    });
   };
 
   return (
     <div>
-      <div className="background-2"> </div>
-      <div className="container-1">
-        <br />
-        <br />
-        <div className="box">
-          <div className="header-1">
-            <div className="text-login">
-              <h1> Local concepts with a </h1>
-              <h1>Global reach</h1>
-            </div>
-            <div className="logo1">
-              <img src={logo1} className="logo2" alt="logo1"></img>
-            </div>
-          </div>
-
-          <div className="form">
-            <div className="item">
-              <form onSubmit={handleAuth}>
-                <label className="tittle">
-                  Email
-                  <br />
-                  <input
-                    className="form-login"
-                    type="email"
-                    placeholder="Insert Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </label>
-                <br />
-
-                <label className="tittle">
-                  Password
-                  <br />
-                  <input
-                    className="form-login"
-                    type="Password"
-                    placeholder="Insert Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </label>
-                {/*<div className="col-sm-10 offset-2">
-                    <input type="checkbox" className="form-check-input" />{" "}
-                    Tampilkan Password
-                  </div>*/}
-                <br />
-                <input className="submit-btn" type="submit" value="Login" />
-              </form>
-              <br />
+      <div>
+        <Toaster />
+      </div>
+      <div className="background-2"/>
+      <a href="/">
+        <TiArrowBack className="absolute ml-5 mt-5 w-10 h-10 fill-white" />
+      </a>
+      <div class="flex items-center justify-center min-h-screen ">
+        <div class="w-auto">
+          <form
+            class="bg-white shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4"
+            onSubmit={handleAuth}
+          >
+            <div className="flex mb-5">
               <div>
-                Belum memiliki akun?{" "}
-                <a href="#" className="text-decoration-none">
-                  {" "}
-                  Sign In
-                </a>
+                <h3 className="m-0 mr-20">Local concepts with a</h3>
+                <h3 className="m-0 mr-20">Global reach</h3>
               </div>
+              <img src={logo1} alt="logo" className="w-24 h-24" />
             </div>
-          </div>
+
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-lg font-bold mb-2"
+                for="email"
+              >
+                Email
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="email"
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div class="mb-6">
+              <label
+                class="block text-gray-700 text-lg font-bold mb-2"
+                for="password"
+              >
+                Password
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="password"
+                type="password"
+                placeholder="Insert Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <p class="text-red-500 text-xs italic">
+                Please enter a correct password.
+              </p>
+            </div>
+            <div class="flex items-center justify-between">
+              <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+                value="Login"
+              >
+                Sign In
+              </button>
+              <a
+                class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+                href="/register"
+              >
+                Don't have account yet?
+              </a>
+            </div>
+          </form>
         </div>
-        <br />
-        <br />
       </div>
     </div>
   );

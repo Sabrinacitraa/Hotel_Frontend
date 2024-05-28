@@ -5,12 +5,12 @@
     font-family: 'Poppins', sans-serif;
   }
 
-.background-1  {
+  .background-1 {
     position: absolute;
     width: 100%;
     min-height: 100vh;
     /*background-color: #4285F4;*/
-    background-color:#F5F7FA;
+    background-image: url("https://www.fourpointssurabaya.co.id/resourcefiles/gallery-image-sec_rightbot_left/subfp-galeri-3.jpg?version=1162024073317");
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;

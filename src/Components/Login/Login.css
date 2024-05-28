@@ -29,6 +29,8 @@
   } */
   
   .container-1 {
+    justify-items: center;
+    align-items: center;
   }
   
   .box {
@@ -108,7 +110,7 @@
     display: inline-block;
     background: #4285F4;
     color: #fff;
-    width: 770px;
+    width: 150px;
     height: 44px;
     border-radius: 15px;
     border: thin solid #888;

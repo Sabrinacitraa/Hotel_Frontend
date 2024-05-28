@@ -3,7 +3,7 @@ import Header from "../Admin/Header";
 import Sidebar from "../Admin/Sidebar";
 import axios from "axios";
 import "../../App.css";
-import { AiOutlineSetting, AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineDelete } from "react-icons/ai";
 
 function DataKamar() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
@@ -14,18 +14,15 @@ function DataKamar() {
     try {
       const token = sessionStorage.getItem("Token");
       // console.log(token)
-      if (!token) {
-        alert("Token not found");
-      }
 
-      const url = "http://localhost:7000/booking/kamar";
+      const url = "http://localhost:7000/room/";
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       // console.log(response)
-      const data = response.data.data;
+      const data = response.data.datas;
       console.log(data);
 
       if (data) {
@@ -55,6 +52,14 @@ function DataKamar() {
   const handleDeleteRoom = (id) => {
     console.log(`Room with ID ${id} deleted`);
     setRooms(rooms.filter((room) => room.id !== id));
+  };
+
+  const handleCheckIn = (id) => {
+    console.log(`Room with ID ${id} checked in`);
+  };
+
+  const handleCheckOut = (id) => {
+    console.log(`Room with ID ${id} checked out`);
   };
 
   return (
@@ -92,14 +97,20 @@ function DataKamar() {
         <tbody>
           {rooms.map((item, index) => (
             <tr key={index.id}>
-              <td>{item.id_kamar}</td>
-              <td>{item.nama_tipe_kamar}</td>
+              <td>{item.id}</td>
+              <td>{item.tipe_kamar.nama_tipe_kamar}</td>
               <td>{item.nomor_kamar}</td>
               <td>{item.status}</td>
-              <td>{item.harga}</td>
-              <td>
+              <td>{item.tipe_kamar.harga}</td>
+              <td style={{ display: "flex", alignItems: "center", gap: "5px" }}>
                 <button onClick={() => handleDeleteRoom(item.id)}>
                   <AiOutlineDelete />
+                </button>
+                <button onClick={() => handleCheckIn(item.id)}>
+                Check In
+                  </button>
+                <button onClick={() => handleCheckOut(item.id)}>
+                  Check Out
                 </button>
               </td>
             </tr>

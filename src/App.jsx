@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserLayout from "./Components/Layouts/User";
 import Home from "./Components/Home/LandingPage/LandingPage";
@@ -8,13 +7,13 @@ import ContactUs from "./Components/ContactUs/ContactUs";
 import Login from "./Components/Login/Login";
 import Booking from "./Components/Booking/Booking";
 import AdminLayout from "./Components/Layouts/Admin";
-import HomeAdmin from "./Components/Admin/HomeAdmin";
 import DataKamar from "./Components/Admin/DataKamar";
 import Transaksi from "./Components/Admin/Transaksi";
 import CheckIn from "./Components/Admin/CheckIn";
 import CheckOut from "./Components/Admin/CheckOut";
 import Register from "./Components/Register/Register";
 import ProtectRoutes from "./Components/utils/ProtectRoutes";
+import BookingForm from "./Components/Form/BookingForm";
 import "./App.css";
 import Admin from "./Components/Admin/Admin";
 
@@ -28,6 +27,14 @@ const App = () => {
             element={
               <ProtectRoutes>
                 <Booking />
+              </ProtectRoutes>
+            }
+          />
+          <Route
+            path="/form"
+            element={
+              <ProtectRoutes>
+                <BookingForm />
               </ProtectRoutes>
             }
           />

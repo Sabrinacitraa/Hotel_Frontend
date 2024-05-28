@@ -91,6 +91,7 @@ function Booking({ rooms, onSelect }) {
                 borderRadius: "10%",
                 marginRight: "30px",
                 marginBottom: "60px",
+                width : "50%"
               }}
               src={`http://localhost:7000/type/${item.foto}`} alt={item.nama_tipe_kamar}
             />

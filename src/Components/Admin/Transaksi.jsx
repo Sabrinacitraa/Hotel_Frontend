@@ -9,7 +9,7 @@ function Transaksi() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
   const [pemesanans, setPemesanans] = useState([]);
 
-  const getAllPemesanan= async () => {
+  const getAllPemesanan = async () => {
     try {
       const token = sessionStorage.getItem("Token");
       // console.log(token)
@@ -17,18 +17,18 @@ function Transaksi() {
         alert("Token not found");
       }
 
-      const url = "http://localhost:7000/pemesanan"
+      const url = "http://localhost:7000/booking/getOrder";
       const response = await axios.get(url, {
-        headers : {
-          Authorization : `Bearer ${token}`
-        }
-      })
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       // console.log(response)
-      const data = response.data.data
-      console.log(data)
+      const data = response.data.data;
+      console.log(data);
 
-      if(data){
-        setPemesanans(data)
+      if (data) {
+        setPemesanans(data);
       }
     } catch (error) {
       alert(error);
@@ -45,7 +45,7 @@ function Transaksi() {
 
   const handleDeleteRoom = (id) => {
     console.log(`PEMESANAN with ID ${id} deleted`);
-    setpemesanans(pemesanans.filter((pemesanan) => pemesanan.id !== id));
+    setPemesanans(pemesanans.filter((pemesanan) => pemesanan.id !== id));
   };
 
   return (
@@ -81,20 +81,31 @@ function Transaksi() {
           </tr>
         </thead>
         <tbody>
-          {rooms.map((item,index) => (
-            <tr key={index.id}>
-              <td>{item.id_kamar}</td>
-              <td>{item.nama_tipe_kamar}</td>
-              <td>{item.nomor_kamar}</td>
-              <td>{item.status}</td>
-              <td>{item.harga}</td>
-              <td>
-                <button onClick={() => handleDeleteRoom(item.id)}>
-                  <AiOutlineDelete />
-                </button>
-              </td>
+          {pemesanans.length > 0 ? (
+            pemesanans.slice(0, 1).map((item, index) => (
+              <tr key={index.id}>
+                <td>{item.id_kamar}</td>
+                <td>{item.nama_tipe_kamar}</td>
+                <td>{item.nomor_kamar}</td>
+                <td>{item.status}</td>
+                <td>{item.harga}</td>
+                <td>
+                  <button onClick={() => handleDeleteRoom(item.id)}>
+                    <AiOutlineDelete />
+                  </button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td>Loading...</td>
+              <td>Loading...</td>
+              <td>Loading...</td>
+              <td>Loading...</td>
+              <td>Loading...</td>
+              <td>Loading...</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>

@@ -144,8 +144,8 @@ const LandingPage = () => {
             Marriott.com. Where will our journey together lead?
           </p>
           <div className="link">
-            <a href="../../Login/Login">Sign in </a>
-            <a href="">Join Now </a>
+            <a href="/Register">Sign in</a>
+            <a href="/Register">Join Now </a>
           </div>
         </div>
       </div>

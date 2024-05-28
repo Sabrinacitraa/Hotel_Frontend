@@ -2,7 +2,7 @@ import React from "react";
 import "./form.css";
 // import { useRoom } from '../App';
 
-function Booking() {
+function BookingForm() {
 //   const { selectedRoom } = useRoom();
 
 //   const taxesAndFees = 0.1 * selectedRoom.flexyRate;
@@ -125,4 +125,4 @@ function Booking() {
   );
 }
 
-export default Booking;
+export default BookingForm;

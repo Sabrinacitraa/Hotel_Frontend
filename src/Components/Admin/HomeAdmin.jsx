@@ -24,7 +24,7 @@ const HomeAdmin = () => {
         throw new Error("No token found in sessionStorage");
       }
 
-      const url = "http://localhost:7000/pemesanan/getcheckin";
+      const url = "http://localhost:7000/booking/getcheckin";
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -52,7 +52,7 @@ const HomeAdmin = () => {
         throw new Error("No token found in sessionStorage");
       }
 
-      const url = "http://localhost:7000/pemesanan/getcheckout";
+      const url = "http://localhost:7000/booking/getcheckout";
       const response = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -82,7 +82,7 @@ const HomeAdmin = () => {
       }
 
       const response = await axios.get(
-        "http://localhost:7000/pemesanan/checkin",
+        "http://localhost:7000/booking/checkin",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -111,7 +111,7 @@ const HomeAdmin = () => {
       }
 
       const response = await axios.get(
-        "http://localhost:7000/pemesanan/checkout",
+        "http://localhost:7000/booking/checkout",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -140,7 +140,7 @@ const HomeAdmin = () => {
       }
 
       const response = await axios.get(
-        "http://localhost:7000/pemesanan/SumTransaksi",
+        "http://localhost:7000/booking/SumTransaksi",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -182,24 +182,28 @@ const HomeAdmin = () => {
           </div>
           <div className="card">
             <div className="card-inner">
-              <h3>Kamar Terpakai</h3>
+              <h3>Check-in</h3>
               <IoBedOutline className="card_icon" />
             </div>
-            {checkInData && <h1>{checkInData}</h1>}
+            {checkInData > 0 ? <h1>{checkInData}</h1> : <p>Loading</p>}
           </div>
           <div className="card">
             <div className="card-inner">
-              <h3>Kamar Kotor</h3>
+              <h3>Check-out</h3>
               <IoBedOutline className="card_icon" />
             </div>
-            {checkOutData && <h1>{checkOutData}</h1>}
+            {checkOutData > 0 ? <h1>{checkOutData}</h1> : <p>Loading</p>}
           </div>
           <div className="card">
             <div className="card-inner">
               <h3>Transaksi</h3>
               <IoBedOutline className="card_icon" />
             </div>
-            {countDataTransaksi && <h1>{countTransaksi}</h1>}
+            {countDataTransaksi > 0 ? (
+              <h1>{countTransaksi}</h1>
+            ) : (
+              <p>Loading</p>
+            )}
           </div>
 
           <div className="card">

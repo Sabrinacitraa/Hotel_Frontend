@@ -41,7 +41,6 @@ body {
 
 /* Header  */
 
-
 .header {
   grid-area: header;
   height: 60px;
@@ -55,6 +54,13 @@ body {
   margin-top: 0;
 }
 
+.logout-container {
+  display: flex;
+  align-items: center;
+  margin-left: 10px; 
+}
+
+
 .icon {
   font-size: 24px; 
   color: #fff; 
@@ -63,7 +69,7 @@ body {
 
 
 .logout-icon:hover {
-  color: #c7d3fa; /* Warna teks saat di-hover */
+  color: #c7d3fa; 
 }
 
 
@@ -272,22 +278,11 @@ margin: 12px;
   
 }
 
-th, td {
-  padding: 8px; 
-  text-align: center; 
-  white-space: nowrap; 
-}
-
-.table-row {
-  margin: 0; 
-  padding: 0; 
-}
-
 .table-cell {
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-top: 4rem;
+  margin-top: 9rem;
 }
 
 .button {
@@ -298,15 +293,6 @@ th, td {
   margin: 0;
   flex-grow: 1; 
   white-space: nowrap; 
-}
-
-td {
-  vertical-align: middle; 
-  text-align: center; 
-}
-
-.table-row {
-  display: table-row; 
 }
 
 .table-cell button {
@@ -367,45 +353,128 @@ td {
 
 /* DataKamar */
 
-.data-kamar-options {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end; 
-}
-
 .search-input {
-  width: 36rem;
-  padding: 20px;
-  font-size: 16px;
+  padding: 8px;
+  width: 200px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .add-room-button {
-  padding: 8px 60px;
-  font-size: 16px;
-  background-color: #448343;
-  color: #fff;
+  padding: 8px 12px;
+  background-color: #3876BF;
+  color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
 .add-room-button:hover {
-  background-color: #365a35;
-} 
+  background-color: #285a8a;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  width: 400px;
+  position: relative;
+}
+
+.modal-content .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.modal-content form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.modal-content form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal-content form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #3876BF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-content form button:hover {
+  background-color: #285a8a;
+}
 
 .room-table {
   width: 100%;
+  border-collapse: collapse;
 }
 
 .room-table th, .room-table td {
-  padding: 50px;
+  text-align: center;
+  
 }
 
 .room-table th {
-  background-color: #fff;
+  background-color: #f4f4f4;
 }
+
+.table-row {
+  transition: background-color 0.3s;
+}
+
+
+.table-row:hover {
+  background-color: #f9f9f9;
+}
+
+.table-cell {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.button {
+  padding: 8px 12px;
+  background-color: #3876BF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #285a8a;
+}
+
+.table-cell button {
+  margin: 0 5px;
+}
+
 
 
 /* Transaksi */

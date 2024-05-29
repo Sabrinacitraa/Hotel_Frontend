@@ -12,14 +12,13 @@ function Header() {
   };
 
   return (
-    <header className="header">
-      <div className="header-right">
-        <IoNotifications className="icon" />
-        <a className="logout-icon" onClick={handleLogout}>
+    <header className="header">  
+        <div className="logout-container"> 
           <IoLogOutOutline className="icon" />
-          Log out
-        </a>
-      </div>
+          <a className="logout-icon" onClick={handleLogout}>
+            Log out
+          </a>
+        </div>
     </header>
   );
 }

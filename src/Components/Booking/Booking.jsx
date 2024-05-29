@@ -5,21 +5,32 @@ import "./Booking.css";
 
 function Booking({ rooms, onSelect }) {
   const [type, setType] = useState([]);
+  const [requestData, setRequestData] = useState([]);
   const currentDate = format(new Date(), "MMMM d, yyyy");
   const formattedDateTomorrow = format(
     new Date(currentDate).getTime() + 24 * 60 * 60 * 1000,
     "MMMM d, yyyy"
   );
 
+  const getRequest = () => {
+    const request = localStorage.getItem("date and room");
+    console.log(request);
+
+    if (request) {
+      setRequestData(JSON.parse(request));
+    }
+  };
+
+  useEffect(() => {
+    getRequest();
+  }, []);
+
   const getType = async () => {
     try {
-      const url = "http://localhost:7000/type/";
-      const response = await axios.get(url);
-      const data = await response.data.data;
-      // console.log(data);
-      if (response) {
-        setType(data);
-        console.log(type)
+      const roomsData = localStorage.getItem("avalaibleRooms");
+      if (roomsData) {
+        setType(JSON.parse(roomsData));
+        console.log(type);
       }
     } catch (error) {
       console.log(error);
@@ -46,16 +57,19 @@ function Booking({ rooms, onSelect }) {
           >
             <div style={{ width: "150px" }}>
               <p style={{ fontWeight: "bold" }}>Stay Dates</p>
-              <p style={{ marginTop: "-10px" }}>{currentDate}</p>
+              <p style={{ marginTop: "-10px" }}>{requestData.checkIn}</p>
             </div>
             <p style={{ fontWeight: "bold" }}> - </p>
             <div style={{ width: "150px", textAlign: "right" }}>
               <p style={{ fontWeight: "bold" }}>Stay Dates</p>
-              <p style={{ marginTop: "-10px" }}>{formattedDateTomorrow}</p>
+              <p style={{ marginTop: "-10px" }}>{requestData.checkOut}</p>
             </div>
           </div>
           <div style={{ marginleft: "100px" }}>
             <button
+              onClick={() => {
+                window.location.href = "/";
+              }}
               style={{
                 backgroundColor: "#003366",
                 color: "white",
@@ -91,8 +105,10 @@ function Booking({ rooms, onSelect }) {
                 borderRadius: "10%",
                 marginRight: "30px",
                 marginBottom: "60px",
+                width: "50%",
               }}
-              src={`http://localhost:7000/type/${item.foto}`} alt={item.nama_tipe_kamar}
+              src={`http://localhost:7000/type/${item.foto}`}
+              alt={item.nama_tipe_kamar}
             />
             <div className="text-detail" style={{ width: "70%" }}>
               <div className="title" style={{ marginBottom: "50px" }}>
@@ -112,7 +128,7 @@ function Booking({ rooms, onSelect }) {
                 </p>
                 <div>
                   <p style={{}}>
-                    IDR. 
+                    IDR.
                     {item.harga}
                     /night
                   </p>

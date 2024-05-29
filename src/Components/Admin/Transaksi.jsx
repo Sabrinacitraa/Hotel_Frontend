@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../Admin/Header";
 import Sidebar from "../Admin/Sidebar";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "../../App.css";
 import { AiOutlineSetting, AiOutlineDelete } from "react-icons/ai";
 
@@ -48,6 +49,14 @@ function Transaksi() {
     setPemesanans(pemesanans.filter((pemesanan) => pemesanan.id !== id));
   };
 
+  const handleCheckIn = (id) => {
+    console.log(`Room with ID ${id} checked in`);
+  };
+
+  const handleCheckOut = (id) => {
+    console.log(`Room with ID ${id} checked out`);
+  };
+
   return (
     <div className="grid-container">
       <Header OpenSidebar={OpenSidebar} />
@@ -73,10 +82,10 @@ function Transaksi() {
         <thead>
           <tr>
             <th>No</th>
-            <th>Room Type</th>
-            <th>Room</th>
+            <th>Invoice</th>
+            <th>Total Room</th>
             <th>Status</th>
-            <th>Price</th>
+            <th>Guest</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -84,15 +93,24 @@ function Transaksi() {
           {pemesanans.length > 0 ? (
             pemesanans.slice(0, 1).map((item, index) => (
               <tr key={index.id}>
-                <td>{item.id_kamar}</td>
-                <td>{item.nama_tipe_kamar}</td>
-                <td>{item.nomor_kamar}</td>
-                <td>{item.status}</td>
-                <td>{item.harga}</td>
-                <td>
-                  <button onClick={() => handleDeleteRoom(item.id)}>
+                <td>{item.id}</td>
+                <td>{item.nomor_pemesanan}</td>
+                <td>{item.jumlah_kamar}</td>
+                <td>{item.status_pemesanan}</td>
+                <td>{item.nama_tamu}</td>
+                <td className="table-cell">
+                  <button
+                    className="button"
+                    onClick={() => handleDeleteRoom(item.id)}
+                  >
                     <AiOutlineDelete />
                   </button>
+                  <Link to={`/admin/checkin`} className="button-link">
+                    Check In
+                  </Link>
+                  <Link to={`/admin/checkout`} className="button-link">
+                    Check Out
+                  </Link>
                 </td>
               </tr>
             ))

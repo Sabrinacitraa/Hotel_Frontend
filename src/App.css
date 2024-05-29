@@ -41,6 +41,7 @@ body {
 }
 
 /* Header  */
+
 .header {
   grid-area: header;
   height: 60px;
@@ -58,6 +59,11 @@ body {
   font-size: 24px; 
   color: #fff; 
   margin-left: 10px;
+}
+
+
+.logout-icon:hover {
+  color: #c7d3fa; /* Warna teks saat di-hover */
 }
 
 
@@ -265,6 +271,50 @@ margin: 12px;
   justify-content: space-between;
   
 }
+
+th, td {
+  padding: 8px; 
+  text-align: center; 
+  white-space: nowrap; 
+}
+
+.table-row {
+  margin: 0; 
+  padding: 0; 
+}
+
+.table-cell {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4rem;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px; 
+  margin: 0;
+  flex-grow: 1; 
+  white-space: nowrap; 
+}
+
+td {
+  vertical-align: middle; 
+  text-align: center; 
+}
+
+.table-row {
+  display: table-row; 
+}
+
+.table-cell button {
+  flex: 1;
+  margin: 0 5px; 
+}
+
+
 
 /* End Main  */
 

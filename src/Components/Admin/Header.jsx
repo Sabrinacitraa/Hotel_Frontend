@@ -1,6 +1,6 @@
 import React from "react";
 import { IoNotifications, IoLogOutOutline } from "react-icons/io5";
-import img from "../../Assets/logo.jpg";
+import '../../App.css';  
 
 function Header() {
   const logged = localStorage.getItem("Data user");
@@ -15,13 +15,8 @@ function Header() {
     <header className="header">
       <div className="header-right">
         <IoNotifications className="icon" />
-        <a
-          IoLogOutOutline
-          className="icon"
-          onClick={() => {
-            handleLogout()
-          }}
-        >
+        <a className="logout-icon" onClick={handleLogout}>
+          <IoLogOutOutline className="icon" />
           Log out
         </a>
       </div>

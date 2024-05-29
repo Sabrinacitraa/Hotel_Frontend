@@ -102,14 +102,14 @@ function DataKamar() {
               <td>{item.nomor_kamar}</td>
               <td>{item.status}</td>
               <td>{item.tipe_kamar.harga}</td>
-              <td style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-                <button onClick={() => handleDeleteRoom(item.id)}>
+              <td className="table-cell">
+                <button className="button" onClick={() => handleDeleteRoom(item.id)}>
                   <AiOutlineDelete />
                 </button>
-                <button onClick={() => handleCheckIn(item.id)}>
-                Check In
-                  </button>
-                <button onClick={() => handleCheckOut(item.id)}>
+                <button className="button" onClick={() => handleCheckIn(item.id)}>
+                  Check In
+                </button>
+                <button className="button" onClick={() => handleCheckOut(item.id)}>
                   Check Out
                 </button>
               </td>

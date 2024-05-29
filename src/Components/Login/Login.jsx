@@ -31,7 +31,7 @@ const Login = () => {
           localStorage.setItem("Data user", JSON.stringify(data.data));
           resolve();
 
-          if ( data.data.role== "customer") {
+          if ( data.data.role == "customer") {
             window.location.href = "/";
           } else {
             window.location.href = "/Admin";

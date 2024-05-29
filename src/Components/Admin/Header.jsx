@@ -13,9 +13,9 @@ function Header() {
 
   return (
     <header className="header">
-      <div className="header-right">
+      <div className="justify-end flex items-center">
         <IoNotifications className="icon" />
-        <a
+        <button
           IoLogOutOutline
           className="icon"
           onClick={() => {
@@ -23,7 +23,7 @@ function Header() {
           }}
         >
           Log out
-        </a>
+        </button>
       </div>
     </header>
   );

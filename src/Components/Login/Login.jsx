@@ -22,9 +22,6 @@ const Login = () => {
         };
         const response = await axios.post(url, input);
         const data = await response.data;
-        console.log('====================================');
-        console.log(data);
-        console.log('====================================');
 
         if (data) {
           sessionStorage.setItem("Token", data.token);
@@ -70,7 +67,7 @@ const Login = () => {
                 <h3 className="m-0 mr-20">Local concepts with a</h3>
                 <h3 className="m-0 mr-20">Global reach</h3>
               </div>
-              <img src={logo1} alt="logo" className="w-24 h-24" />
+              <img src={logo1} alt="logo" className="w-28 h-20" />
             </div>
 
             <div class="mb-4">
